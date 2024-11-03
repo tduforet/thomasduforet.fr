@@ -1,23 +1,9 @@
 ---
-import '../styles/global.css';
-
-const pageTitle = 'Home Page';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Greeting from '../components/Greeting';
+const pageTitle = "Home Page";
 ---
-
-<html lang="fr">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width"/>
-    <title>{pageTitle}</title>
-
-</head>
-<main>
-    <a href="/">Home</a>
-    <a href="/blog">Blog</a>
-    <a href="/about/">About</a>
-
-    <h1>{pageTitle}</h1>
-
-</main>
-</html>
-
+<BaseLayout pageTitle={pageTitle}>
+    <h2>My awesome blog subtitle</h2>
+    <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
+</BaseLayout>
