@@ -1,5 +1,6 @@
 ---
-const {title, url, date, description} = Astro.props
+import Tag from "./Tag.astro";
+const {title, url, date, description, tags} = Astro.props
 
 
 const formattedDate = new Intl.DateTimeFormat('fr-FR', {
@@ -12,7 +13,13 @@ const formattedDate = new Intl.DateTimeFormat('fr-FR', {
     <a href={url}>
         <div class="post-info">
             <span class="title">{title}</span>
-            <span>{description}</span>
+            <span class="description">{description}</span>
+
+            <div class="tags">
+              {tags.map((tag: string) => (
+                      <Tag tag={tag}/>))}
+            </div>
+
         </div>
 
         <span class="publication-date">{formattedDate}</span>
@@ -24,6 +31,7 @@ const formattedDate = new Intl.DateTimeFormat('fr-FR', {
   .post-info {
     display: flex;
     flex-direction: column;
+    flex: 2;
   }
 
   .title {
@@ -31,8 +39,28 @@ const formattedDate = new Intl.DateTimeFormat('fr-FR', {
     font-size: 18px;
   }
 
+
   .publication-date {
+    flex: 1;
     font-size: 16px;
+    text-align: center;
+  }
+
+  .tags {
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+  }
+
+
+  @media screen and (min-width: 636px) {
+    .post-info {
+      flex: 6;
+    }
+
+    .publication-date {
+      flex: 1;
+    }
   }
 
   a {

@@ -1,0 +1,23 @@
+---
+const {tag} = Astro.props
+---
+
+<div class="tag">
+  {tag}
+</div>
+
+
+<style>
+    .tag {
+      width: fit-content;
+      height: fit-content;
+      padding: 2px 4px 2px 4px;
+      border-radius: 4px;
+      background-color: #93c5fd;
+    }
+
+
+    :global(.dark) .tag {
+      background-color: #1e3a8a;
+    }
+</style>
