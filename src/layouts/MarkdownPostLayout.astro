@@ -9,22 +9,29 @@ const formattedDate = new Intl.DateTimeFormat('fr-FR', {
   month: 'long',
   year: 'numeric'
 }).format(new Date(frontmatter.pubDate));
+
+const {minutesRead} = Astro.props.frontmatter;
 ---
 
 <BaseLayout tabTitle={frontmatter.title}>
     <main>
         <h1>{frontmatter.title}</h1>
-        <div class="tags">
-          {frontmatter.tags.map((tag: string) => (
-                  <a href={`/tags/${tag}`}>
-                      <Tag tag={tag}/>
-                  </a>
-          ))}
+        <div class="article-header">
+            <div class="tags">
+              {frontmatter.tags.map((tag: string) => (
+                      <a href={`/tags/${tag}`}>
+                          <Tag tag={tag}/>
+                      </a>
+              ))}
+            </div>
+            <div class="reading-time">
+              {minutesRead}
+            </div>
+
+            <div class="illustration">
+              {frontmatter.image && <img src={frontmatter.image.url} width="600" alt={frontmatter.image.alt}/>}
+            </div>
         </div>
-        <div>
-          {formattedDate}
-        </div>
-      {frontmatter.image && <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt}/>}
         <slot/>
     </main>
 </BaseLayout>
@@ -35,6 +42,21 @@ const formattedDate = new Intl.DateTimeFormat('fr-FR', {
     flex: 1;
     flex-direction: column;
     margin-top: 2rem;
+  }
+
+  .reading-time {
+    font-style: italic;
+  }
+
+  .illustration {
+    align-self: center;
+  }
+
+  .article-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
   }
 
   a {
