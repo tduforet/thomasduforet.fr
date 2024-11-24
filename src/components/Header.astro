@@ -1,13 +1,25 @@
 ---
-import Navigation from "./Navigation.astro";
-import Hamburger from "./Hamburger.astro";
 import ThemeIcon from './ThemeIcon.astro';
 ---
 
 <header>
     <nav>
-        <Hamburger />
-        <ThemeIcon />
-        <Navigation/>
+        <img class="nav-avatar" src="/avatar-green.png" alt="avatar of Thomas"/>
+        <ThemeIcon/>
     </nav>
 </header>
+
+
+<style>
+  .nav-avatar {
+    width: 42px;
+    height: 42px;
+    clip-path: circle(20px at center);
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+</style>

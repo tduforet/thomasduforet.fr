@@ -1,9 +1,75 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Greeting from '../components/Greeting';
-const pageTitle = "Home Page";
+import '../styles/global.css';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BlogPost from '../components/BlogPost.astro';
+
+const pageTitle = "Posts";
+const allPosts = await Astro.glob('./posts/*.md');
 ---
-<BaseLayout pageTitle={pageTitle}>
-    <h2>My awesome blog subtitle</h2>
-    <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
+
+<BaseLayout tabTitle={pageTitle}>
+    <main>
+        <article>
+            <h2>Présentation</h2>
+            <hr/>
+            <div class="presentation">
+                <p>Hello 👋</p>
+                <p>Lorem ipsum dolores sit amet...</p>
+            </div>
+
+        </article>
+
+        <article>
+            <div>
+                <h2>Articles</h2>
+                <hr/>
+            </div>
+            <ul>
+              {allPosts.map((post) =>
+                      <BlogPost url={post.url} title={post.frontmatter.title} date={post.frontmatter.pubDate}
+                                description={post.frontmatter.description}/>)}
+            </ul>
+        </article>
+    </main>
 </BaseLayout>
+
+<style>
+  main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 4rem;
+    margin-top: 2rem;
+  }
+
+  h2 {
+    margin-block: 0;
+  }
+
+  hr {
+    border: 1px solid #e7e5e4;
+  }
+
+  :global(.dark) hr {
+    border: 1px solid #292524;
+  }
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 1rem;
+  }
+
+  .presentation p {
+    margin-block: 0;
+  }
+
+  .leboncoin-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 2px;
+  }
+</style>
+

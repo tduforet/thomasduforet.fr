@@ -1,9 +1,24 @@
 ---
+const pathname = new URL(Astro.request.url).pathname;
 ---
 
 <div class="nav-links">
-    <a href="/">Home</a>
-    <a href="/blog/">Blog</a>
-    <a href="/about/">About</a>
-    <a href="/tags/">Tags</a>
+    <img class="nav-avatar" src="/avatar-green.png" alt="avatar of Thomas"/>
+    <a class={pathname === "/" ? "active" : ""} href="/">Blog</a>
 </div>
+
+<style>
+  .nav-avatar {
+    width: 54px;
+    height: 54px;
+    clip-path: circle(26px at center);
+  }
+
+  a {
+    color: black
+  }
+
+  a.active {
+    color: blue;
+  }
+</style>

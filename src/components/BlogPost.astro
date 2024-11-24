@@ -1,4 +1,59 @@
 ---
-const { title, url } = Astro.props
+const {title, url, date, description} = Astro.props
+
+
+const formattedDate = new Intl.DateTimeFormat('fr-FR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+}).format(new Date(date));
 ---
-<li><a href={url}>{title}</a></li>
+<li>
+    <a href={url}>
+        <div class="post-info">
+            <span class="title">{title}</span>
+            <span>{description}</span>
+        </div>
+
+        <span class="publication-date">{formattedDate}</span>
+    </a>
+</li>
+
+
+<style>
+  .post-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .title {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .publication-date {
+    font-size: 16px;
+  }
+
+  a {
+    display: flex;
+    text-decoration: none;
+    color: black;
+    padding: 1rem;
+    border-radius: 4px;
+    justify-content: space-between;
+  }
+
+  a:hover {
+    background-color: #e7e5e4;
+  }
+
+  :global(.dark) a:hover {
+    background-color: #292524;
+  }
+
+  :global(.dark) a {
+    color: white;
+  }
+
+</style>
