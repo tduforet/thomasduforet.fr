@@ -13,8 +13,30 @@ const allPosts = await Astro.glob('./posts/*.md');
             <h2>Présentation</h2>
             <hr/>
             <div class="presentation">
-                <p>Hello 👋</p>
-                <p>Lorem ipsum dolores sit amet...</p>
+                <p>
+                    Je m'appelle <strong>Thomas</strong>, développeur front-end passionné, spécialisé dans la
+                    création d'applications web avec <strong>React</strong> et <strong>Typescript</strong>.
+                </p>
+                <p>
+                    Actuellement, je travaille chez <strong class="leboncoin">Leboncoin</strong>, où j'ai l'opportunité
+                    de contribuer à
+                    à un produit utilisé chaque jour par des millions de français 🙂
+                </p>
+                <p>
+                    Au cours de ma carrière, j'ai également eu l'opportunité de collaborer sur des projets pour des
+                    entreprises comme <strong>Decathlon</strong>, <strong>Norauto</strong>, et <strong>Galeries
+                    Lafayette</strong>, des expériences qui m'ont permis de relever des défis techniques variés et
+                    d'enrichir mon expertise front-end.
+                </p>
+                <p>
+                    Sur ce blog, je partagerai mes connaissances, mes découvertes et mes conseils en développement
+                    front-end, avec un accent particulier sur React et Typescript.
+                </p>
+
+                <p class="closing">
+                    Merci de prendre le temps de me lire ! J’espère que tu trouveras mes articles utiles et
+                    enrichissants.
+                </p>
             </div>
 
         </article>
@@ -53,8 +75,24 @@ const allPosts = await Astro.glob('./posts/*.md');
     border: 1px solid #e7e5e4;
   }
 
+  strong {
+    color: #1e3a8a;
+  }
+
+  .leboncoin {
+    color: #ec5a13;
+  }
+
   :global(.dark) hr {
     border: 1px solid #292524;
+  }
+
+  :global(.dark) strong {
+    color: #93c5fd;
+  }
+
+  :global(.dark) strong.leboncoin {
+    color: #ec5a13;
   }
 
   ul {
@@ -65,8 +103,15 @@ const allPosts = await Astro.glob('./posts/*.md');
     gap: 1rem;
   }
 
+  .presentation {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
   .presentation p {
     margin-block: 0;
+    margin-bottom: 12px;
   }
 
   .leboncoin-icon {
