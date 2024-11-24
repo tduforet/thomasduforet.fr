@@ -17,13 +17,23 @@ export async function getStaticPaths() {
 }
 
 const {tag} = Astro.params;
-const {posts} = Astro.props;
+const posts = []
 ---
 <BaseLayout tabTitle={tag}>
     <p>Articles étiquetés avec {tag}</p>
-    <ul>
-      {posts.map((post) =>
-              <BlogPost url={post.url} title={post.frontmatter.title} date={post.frontmatter.pubDate}
-                        description={post.frontmatter.description} tags={post.frontmatter.tags}/>)}
-    </ul>
+  {posts && posts.length > 0 ?
+          <ul>
+            {posts.map((post) =>
+                    <BlogPost url={post.url} title={post.frontmatter.title} date={post.frontmatter.pubDate}
+                              description={post.frontmatter.description} tags={post.frontmatter.tags}/>)}
+          </ul> : <span>Il n'y a pas encore d'article</span>}
 </BaseLayout>
+
+
+<style>
+  ul {
+    list-style-type: none;
+    margin-block: 0;
+    padding-inline-start: 0;
+  }
+</style>

@@ -24,11 +24,14 @@ const allPosts = await Astro.glob('./posts/*.md');
                 <h2>Articles</h2>
                 <hr/>
             </div>
-            <ul>
-              {allPosts.map((post) =>
-                      <BlogPost url={post.url} title={post.frontmatter.title} date={post.frontmatter.pubDate}
-                                description={post.frontmatter.description} tags={post.frontmatter.tags}/>)}
-            </ul>
+
+          {allPosts && allPosts.length > 0 ?
+                  <ul>
+                    {allPosts.map((post) =>
+                            <BlogPost url={post.url} title={post.frontmatter.title} date={post.frontmatter.pubDate}
+                                      description={post.frontmatter.description} tags={post.frontmatter.tags}/>)}
+                  </ul> : <span>Il n'y a pas encore d'article</span>}
+
         </article>
     </main>
 </BaseLayout>

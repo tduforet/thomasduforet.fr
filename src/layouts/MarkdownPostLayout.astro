@@ -1,47 +1,55 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import Tag from "../components/Tag.astro";
 const {frontmatter} = Astro.props;
+
+
+const formattedDate = new Intl.DateTimeFormat('fr-FR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+}).format(new Date(frontmatter.pubDate));
 ---
 
 <BaseLayout tabTitle={frontmatter.title}>
     <main>
         <h1>{frontmatter.title}</h1>
-        <p>{frontmatter.pubDate.toString().slice(0, 10)}</p>
-        <p><em>{frontmatter.description}</em></p>
-        <p>Written by: {frontmatter.author}</p>
-        <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt}/>
         <div class="tags">
-          {frontmatter.tags.map((tag) => (
-                  <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
+          {frontmatter.tags.map((tag: string) => (
+                  <a href={`/tags/${tag}`}>
+                      <Tag tag={tag}/>
+                  </a>
           ))}
         </div>
+        <div>
+          {formattedDate}
+        </div>
+      {frontmatter.image && <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt}/>}
         <slot/>
     </main>
 </BaseLayout>
 
 <style>
-  a {
-    color: #00539F;
+  main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-top: 2rem;
   }
 
-  main {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      margin-top: 2rem;
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  :global(.dark) a {
+    color: white;
   }
 
   .tags {
     display: flex;
+    gap: 8px;
     flex-wrap: wrap;
   }
 
-  .tag {
-    margin: 0.25em;
-    border: dotted 1px #a1a1a1;
-    border-radius: .5em;
-    padding: .5em 1em;
-    font-size: 1.15em;
-    background-color: #F8FCFD;
-  }
 </style>
