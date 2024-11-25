@@ -29,7 +29,7 @@ const {minutesRead} = Astro.props.frontmatter;
             </div>
 
             <div class="illustration">
-              {frontmatter.image && <img src={frontmatter.image.url} width="600" alt={frontmatter.image.alt}/>}
+              {frontmatter.image && <img src={frontmatter.image.url} alt={frontmatter.image.alt}/>}
             </div>
         </div>
         <slot/>
@@ -50,6 +50,16 @@ const {minutesRead} = Astro.props.frontmatter;
 
   .illustration {
     align-self: center;
+  }
+
+  .illustration img {
+    width: 350px;
+  }
+
+  @media screen and (min-width: 636px) {
+    .illustration img {
+      width: 600px;
+    }
   }
 
   .article-header {
