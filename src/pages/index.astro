@@ -4,7 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import BlogPost from '../components/BlogPost.astro';
 
 const pageTitle = "Thomas Duforet";
-const allPosts = await Astro.glob('./posts/*.md');
+const blogPosts = await Astro.glob('./posts/*.md');
 ---
 
 <BaseLayout tabTitle={pageTitle}>
@@ -28,6 +28,8 @@ const allPosts = await Astro.glob('./posts/*.md');
                     Lafayette</strong>, des expériences qui m'ont permis de relever des défis techniques variés et
                     d'enrichir mon expertise front-end.
                 </p>
+                <p>Sur mon temps perso je fais du sport, de la veille et je développe des applications mobiles avec
+                    React native.</p>
                 <p>
                     Sur ce blog, je partagerai mes connaissances, mes découvertes et mes conseils en développement
                     front-end, avec un accent particulier sur React et Typescript.
@@ -47,9 +49,9 @@ const allPosts = await Astro.glob('./posts/*.md');
                 <hr/>
             </div>
 
-          {allPosts && allPosts.length > 0 ?
+          {blogPosts && blogPosts.length > 0 ?
                   <ul>
-                    {allPosts.map((post) =>
+                    {blogPosts.map((post) =>
                             <BlogPost url={post.url} title={post.frontmatter.title} date={post.frontmatter.pubDate}
                                       description={post.frontmatter.description} tags={post.frontmatter.tags}/>)}
                   </ul> : <span>Il n'y a pas encore d'article</span>}

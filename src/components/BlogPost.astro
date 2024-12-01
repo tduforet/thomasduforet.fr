@@ -1,29 +1,29 @@
 ---
-import Tag from "./Tag.astro";
-const {title, url, date, description, tags} = Astro.props
+import Tag from './Tag.astro'
+const { title, url, date, description, tags } = Astro.props
 
 
 const formattedDate = new Intl.DateTimeFormat('fr-FR', {
   day: 'numeric',
   month: 'long',
   year: 'numeric'
-}).format(new Date(date));
+}).format(new Date(date))
 ---
 <li>
-    <a href={url}>
-        <div class="post-info">
-            <span class="title">{title}</span>
-            <span class="description">{description}</span>
+  <a href={url}>
+    <div class="post-info">
+      <span class="title">{title}</span>
+      <span class="description">{description}</span>
 
-            <div class="tags">
-              {tags.map((tag: string) => (
-                      <Tag tag={tag}/>))}
-            </div>
+      <div class="tags">
+        {tags.map((tag: string) => (
+          <Tag tag={tag} />))}
+      </div>
 
-        </div>
+    </div>
 
-        <span class="publication-date">{formattedDate}</span>
-    </a>
+    <span class="publication-date">{formattedDate}</span>
+  </a>
 </li>
 
 

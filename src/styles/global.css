@@ -15,7 +15,6 @@ body {
   box-sizing: border-box;
 }
 
-
 .container {
   display: flex;
   flex-direction: column;
@@ -86,7 +85,6 @@ h1 {
   }
 }
 
-
 html.dark {
   background-color: #1c1917;
   color: #fff;
@@ -100,5 +98,3 @@ html.dark {
 .dark .nav-links a:focus {
   color: #ff9776;
 }
-
-

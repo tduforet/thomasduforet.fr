@@ -1,10 +1,10 @@
 ---
-const pathname = new URL(Astro.request.url).pathname;
+const pathname = new URL(Astro.request.url).pathname
 ---
 
 <div class="nav-links">
-    <img class="nav-avatar" src="/avatar-green.png" alt="avatar of Thomas"/>
-    <a class={pathname === "/" ? "active" : ""} href="/">Blog</a>
+  <img class="nav-avatar" src="/avatar-green.png" alt="avatar of Thomas" />
+  <a class={pathname === '/' ? 'active' : ''} href="/">Blog</a>
 </div>
 
 <style>

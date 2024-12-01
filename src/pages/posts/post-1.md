@@ -4,7 +4,7 @@ title: 'My First Blog Post'
 pubDate: 2022-07-01
 description: 'This is the first post of my new Astro blog.'
 author: 'Astro Learner'
-tags: ["astro", "blogging"]
+tags: ['astro', 'blogging']
 ---
 
 Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website.
